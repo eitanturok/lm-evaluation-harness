@@ -268,7 +268,7 @@ class OpenaiCompletionsLM(TemplateLM):
                 inp = context_enc[-(self.max_length - self.max_gen_toks) :]
                 inps.append(inp)
 
-            until = request_args.get("until", ["<|endoftext|>"])
+            # until = request_args.get("until", ["<|endoftext|>"])
             request_args["temperature"] = request_args.get("temperature", 0)
 
             response = oa_completion(
@@ -276,7 +276,7 @@ class OpenaiCompletionsLM(TemplateLM):
                 model=self.model,
                 prompt=inps,
                 max_tokens=self.max_gen_toks,
-                stop=until,
+                # stop=until,
                 seed=self.seed,
                 **{
                     k: v
